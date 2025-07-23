@@ -12,5 +12,9 @@
     <header>
         page d'accueil
     </header>
+    <main>
+        Satisfait ou remboursé <br>
+        14 jours pour changer d'avis
+    </main>
 </body>
 </html>
