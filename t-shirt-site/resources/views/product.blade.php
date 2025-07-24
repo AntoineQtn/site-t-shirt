@@ -6,12 +6,12 @@
  body {
             font-family: Arial, sans-serif;
             justify-content: center;
-            padding: 10px;
-            margin :500px;
+            padding: 1px;
+            margin-left :500px;
         }
 
 
-
+ 
       .top-container {
             display: flex;
             align-items: flex-start; /* aligne le haut du tableau et des images */
@@ -127,7 +127,8 @@ table, th, td {
     <div class="promo">-20% de réduction</div>
 
     <br><br>
-    <button>Ajouter au panier</button>
+    <button style="background-color: red; color: white; border: none; padding: 10px 20px; border-radius: 5px;">
+    Ajouter au panier </button>
 
 
    
