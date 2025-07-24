@@ -85,6 +85,8 @@
     <nav>
         <a href="#">Profil</a>
         <a href="#">Panier</a>
+        <a href="#">Catalogue</a>
+        
     </nav>
 </header>
 
