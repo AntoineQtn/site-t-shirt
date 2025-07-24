@@ -85,7 +85,6 @@
     <nav>
         <a href="#">Profil</a>
         <a href="#">Panier</a>
-        <a href="{{asset (')}}>"catalogue</a>
     </nav>
 </header>
 
