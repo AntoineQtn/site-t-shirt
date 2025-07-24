@@ -9,6 +9,7 @@
     <title>homepage</title>
 </head>
 <body>
+    @include('components.header')
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -85,9 +86,10 @@
     <nav>
         <a href="#">Profil</a>
         <a href="#">Panier</a>
-        <a href="#">Catalogue</a>
+     
         
     </nav>
+       <a href="/product-list">Catalogue</a>
 </header>
 
 <div class="search-bar">
@@ -119,6 +121,6 @@
         </div>
     </div>
 </section>
-
+@include('components.footer')
 </body>
 </html>
