@@ -18,7 +18,6 @@ button{
     color: white;
 }
 
-
  body {
             font-family: Arial, sans-serif;
             justify-content: center;
@@ -27,14 +26,14 @@ button{
         }
 
 
- 
+
       .top-container {
             display: flex;
             align-items: flex-start; /* aligne le haut du tableau et des images */
             gap: 50px; /* espace entre tableau et images */
         }
 
-    
+
     table {
     margin: 40px auto 0 auto; /* marge en haut + centrer horizontalement */
     border-collapse: collapse;
@@ -43,9 +42,9 @@ button{
     font-size: 1em;
 }
 
-    
+
          .gallery {
-    
+
     display: grid;
     grid-template-columns: repeat(2, 300px);
     grid-auto-rows: auto;
@@ -109,7 +108,7 @@ table, th, td {
 
     <div class="top-container">
         <!-- Tableau à gauche -->
-        
+
 
     <div class="gallery">
 
@@ -135,7 +134,7 @@ table, th, td {
             </tbody>
         </table>
     </div>
-        
+
     <p><strong>Teddy Yacht Club</strong></p>
 <p>Tee Shirt Oversize Large Atelier Paris Blanc Noir</p>
 
