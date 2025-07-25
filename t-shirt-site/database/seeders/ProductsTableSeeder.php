@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\DB;
 
 class ProductsTableSeeder extends Seeder
 {
+    /**
+     * Run the database seeds.
+     */
     public function run()
     {
         DB::table('products')->insert([
@@ -14,9 +17,9 @@ class ProductsTableSeeder extends Seeder
                 'name' => 't-shirt 1',
                 'description' => 'Description du produit 1',
                 'image' => 'image1.jpg',
-                'brand' => 'Marque A',
-                'available' => true,
-                'quantity' => 10,
+                'marque' => 'Marque A',
+                'disponibilite' => true,
+                'quantite' => 10,
                 'price' => 29.99,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -25,15 +28,13 @@ class ProductsTableSeeder extends Seeder
                 'name' => 't-shirt 2',
                 'description' => 'Description du produit 2',
                 'image' => 'image2.jpg',
-                'brand' => 'Marque B',
-                'available' => false,
-                'quantity' => 0,
+                'marque' => 'Marque B',
+                'disponibilite' => false,
+                'quantite' => 0,
                 'price' => 15.50,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
         ]);
     }
-
 }
-

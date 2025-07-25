@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\ProductController;
 
-
-Route::get('/', [homeController::class, 'show']);
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/homepage', [homeController::class, 'show']);
 
 Route::get('/products', [ProductController::class, 'index']);
 
