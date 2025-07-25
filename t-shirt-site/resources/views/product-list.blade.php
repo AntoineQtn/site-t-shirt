@@ -1,30 +1,73 @@
-@include('components.header')
+@extends('components/layout')
 
-<div class="advertising">
-    <p>TOUJOURS PLUS DE SOLDES!</p>
-</div>
-<div class="product-card">
-    <h1>Titre</h1>
-    <img src="{{asset('images/débardeur.jpg')}}" alt="t-shirt-image">
-</div>
+@section('title', 'Liste des T-shirts')
 
-@include('components.footer')
+@section('content')
+    <div>
+        <h1>Nos T-shirts</h1>
 
-<div class="advertising">
-    <p>TOUJOURS PLUS DE SOLDES!</p>
-</div>
-<h1>Titre</h1>
-    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dCUyMHNoaXJ0JTIwYmxhbmN8ZW58MHx8MHx8fDA%3D" alt="t-shirt-image">
+        @if($products->count() > 0)
+            <div>
+                @foreach($products as $product)
+                    <div>
+                        <div>
+                            @if($product->image)
+                                <img src="{{ asset('storage/' . $product->image) }}"
+                                     alt="{{ $product->name }}"
+                                     >
+                            @else
+                                <div>
+                                    <span>Pas d'image</span>
+                                </div>
+                            @endif
+                        </div>
+
+                        <div>
+                            <h3>{{ $product->name }}</h3>
+
+                            @if($product->description)
+                                <p>
+                                    {{ Str::limit($product->description, 100) }}
+                                </p>
+                            @endif
+
+                            <div>
+                                <span>{{ number_format($product->price, 2) }} €</span>
+
+                                @if($product->stock_quantity > 0)
+                                    <span>En stock ({{ $product->stock_quantity }})</span>
+                                @else
+                                    <span>Rupture de stock</span>
+                                @endif
+                            </div>
 
 
-<style>
+                            <div>
+                                <a href="{{ route('products.show', $product->id) }}">
+                                    Voir détails
+                                </a>
 
-    img {
-        width: 10%;
-        height:  auto;
-    }
-    button{
-        background-color: red;
-        color: white;
-    }
-</style>
+                                @if($product->stock_quantity > 0)
+                                    <button onclick="addToCart({{ $product->id }})">
+                                        <i></i>
+                                    </button>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <div>
+                <h2>Aucun produit disponible</h2>
+                <p>Revenez plus tard pour découvrir nos nouveaux t-shirts !</p>
+            </div>
+        @endif
+    </div>
+
+    <script>
+        function addToCart(productId) {
+            alert('Produit ajouté au panier ! (ID: ' + productId + ')');
+        }
+    </script>
+@endsection
