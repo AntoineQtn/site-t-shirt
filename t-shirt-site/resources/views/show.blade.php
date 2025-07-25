@@ -1,3 +1,6 @@
+
+
+
  @include('components.header')
 <!DOCTYPE html>
 <html>

@@ -14,12 +14,12 @@ class ProductsTableSeeder extends Seeder
     {
         DB::table('products')->insert([
             [
-                'name' => 't-shirt 1',
+                'name' => 't-shirt polo',
                 'description' => 'Description du produit 1',
-                'image' => 'image1.jpg',
-                'marque' => 'Marque A',
-                'disponibilite' => true,
-                'quantite' => 10,
+                'image' => 'data:image/png;base64, /9j/4AAQSkZJRgABAQEAYABgAAD…vGgNBENSc9bOQARY1Kaqqvn8nfnq/IP6A/wCR0f0/9/8Ay//Z',
+                'brand' => 'Marque A',       
+                'available' => true,          
+                'quantity' => 10,             
                 'price' => 29.99,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -28,14 +28,36 @@ class ProductsTableSeeder extends Seeder
                 'name' => 't-shirt 2',
                 'description' => 'Description du produit 2',
                 'image' => 'image2.jpg',
-                'marque' => 'Marque B',
-                'disponibilite' => false,
-                'quantite' => 0,
+                'brand' => 'Marque B',
+                'available' => false,
+                'quantity' => 0,
                 'price' => 15.50,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            // Aj
+            [
+                'name' => 'T-Shirt Blanc',
+                'description' => 'T-shirt oversize blanc coton',
+                'image' => 'https://exemple.com/image.jpg',
+                'brand' => 'Teddy Club',
+                'available' => true,
+                'quantity' => 50,
+                'price' => 19.99,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            // Ajoute ici autant de produits que tu veux :
+            [
+                'name' => 'T-Shirt Noir',
+                'description' => 'T-shirt slim noir',
+                'image' => 'https://exemple.com/image-noir.jpg',
+                'brand' => 'Marque C',
+                'available' => true,
+                'quantity' => 25,
+                'price' => 24.99,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }
