@@ -1,8 +1,24 @@
+ @include('components.header')
 <!DOCTYPE html>
 <html>
 <head>
+
+
     <title>T-Shirt produit</title>
     <style>
+img {
+    width: 10%;
+    height:  auto;
+}
+h1{
+    color: green ;
+}
+button{
+    background-color: red;
+    color: white;
+}
+
+
  body {
             font-family: Arial, sans-serif;
             justify-content: center;
@@ -82,6 +98,10 @@ table, th, td {
         }
     </style>
 </head>
+
+ @include('components.header')
+
+
 <body>
 
     <h1>Product:T-Shirt blanc</h1>
@@ -131,8 +151,15 @@ table, th, td {
     Ajouter au panier </button>
 
 
-   
-
 
 </body>
+
+ @include('components.footer')
+
+
+
+
+
+
 </html>
+

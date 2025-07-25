@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 
 class ProductListController extends Controller
@@ -10,4 +11,8 @@ class ProductListController extends Controller
     {
         return view('product-list');
     }
+
+
+    
 }
+
