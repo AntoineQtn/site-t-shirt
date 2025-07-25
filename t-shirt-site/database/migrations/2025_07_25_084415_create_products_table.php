@@ -24,10 +24,6 @@ public function up()
     });
 }
 
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('products');

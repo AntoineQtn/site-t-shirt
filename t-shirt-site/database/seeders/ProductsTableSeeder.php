@@ -35,6 +35,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+<<<<<<< HEAD
             [
                 'name' => 'T-Shirt Blanc',
                 'description' => 'T-shirt oversize blanc coton',
@@ -58,6 +59,8 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+=======
+>>>>>>> 64e65fcfb7833cbbdaa3eca4722e617a45bbdf0b
         ]);
     }
 }
