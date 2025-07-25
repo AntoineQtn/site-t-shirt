@@ -9,10 +9,10 @@ use App\Http\Controllers\CartController;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/homepage', [homeController::class, 'show']);
+
+Route::get('/product', [ProductController::class, 'index']);
 
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 
-Route::get('/cart', [CartController::class, 'show']);
-
-Route::get('/product', [ProductController::class, 'index']);
