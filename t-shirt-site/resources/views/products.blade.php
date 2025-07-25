@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Liste des produits</title>
-</head>
-<body>
+
     <h1>Nos produits</h1>
 
     <ul>
@@ -18,5 +13,6 @@
         @endforeach
     </ul>
 
-</body>
-</html>
+
+
+
