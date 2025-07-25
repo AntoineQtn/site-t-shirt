@@ -8,24 +8,23 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-  
+
   public function index()
   {
-   $title = "T-Shirt produit";
-  return view('product');
-  
+      $products = Products::all(); // récupère tous les produits
+      return view('products', compact('products'));
+   //$title = "T-Shirt produit";
+  //return view('product');
+
 
 }
-
-public function show()
-{
-    $products = Products::all(); // récupère tous les produits
-    return view('products', compact('products'));
-}
-
-
-
-
+public function show($id)
+    {
+        $title = "T-Shirt produit";
+        return view('products.show');
+        //$product = ProductModel::findOrFail($id);
+        //return view('products.product-detail', compact('product'));
+    }
 }
 
 
