@@ -1,8 +1,7 @@
-@extends('components/layout')
+@extends('layouts.frontoffice')
 
 @section('content')
-    <h1>Header</h1>
 
-    <button>Connexion</button>
-    <button>Panier</button>
+    <a href="{{ route('basket.cart') }}" class="btn btn-primary btn-panier">Panier</a>
+
 @endsection

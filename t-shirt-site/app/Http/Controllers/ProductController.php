@@ -1,26 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\ProductsModel;
+use Illuminate\Contracts\View\View;
 
 class ProductController extends Controller
 {
 
-  public function index()
+  public function index(): View
   {
-      $products = ProductsModel::all(); // récupère tous les produits
-      return view('products', compact('products'));
-   //$title = "T-Shirt produit";
-  //return view('product');
-
+      $products = ProductsModel::all();
+      return view('product.index', compact('products'));
 
 }
-public function show(int $id)
-    {
-        //$title = "T-Shirt produit";
-        //return view('products.show');
+public function show(int $id): View
+{
         $product = ProductsModel::findOrFail($id);
-        return view('products.show', compact('product'));
+        return view('product.show', compact('product'));
     }
 }
 

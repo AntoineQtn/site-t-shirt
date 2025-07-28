@@ -21,7 +21,6 @@ public function up()
     });
 }
 
-//jhfjdfjdsfjlksdjflkdsjflksjf
     public function down(): void
     {
         Schema::dropIfExists('products');
