@@ -86,21 +86,22 @@
     <nav>
         <a href="#">Profil</a>
         <a href="#">Panier</a>
-     
-        
     </nav>
-       <a href="/product-list">Catalogue</a>
-       <a href=""></a>
+    <a href="/product-list">Catalogue</a>
+    <a href=""></a>
 </header>
 
 <div class="search-bar">
     <input type="text" placeholder="Rechercher un t-shirt...">
 </div>
 
-<div class="promo-banner">
-    Satisfait ou remboursé – 14 jours pour changer d'avis<br>
-    <div class="highlight">Soldes d’été – 2ème démarque ! Jusqu’à <b>80%</b> sur les Nikes bleues</div>
-</div>
+{{-- Condition de la bannière promo--}}
+@if($promoActive)
+    <div class="promo-banner">
+        Satisfait ou remboursé – 14 jours pour changer d'avis<br>
+        <div class="highlight">Soldes d’été – 2ème démarque ! Jusqu’à <b>80%</b> sur les Nikes bleues</div>
+    </div>
+@endif
 
 <section class="section">
     <h2>Suggestions</h2>
@@ -122,6 +123,7 @@
         </div>
     </div>
 </section>
+
 @include('components.footer')
 </body>
 </html>
