@@ -8,6 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>homepage</title>
 </head>
+<header>
+    <div class="logo">Boutique T-Shirt.com</div>
+    <nav>
+        <a href="">Profil</a>
+        <a href="/cart">Panier</a>
+        <a href="http://127.0.0.1:8004/products">Catalogue</a>
+        <a href="{{ route('login.form') }}">Connexion Backoffice</a> <!-- lien vers login -->
+    </nav>
+</header>
+
 <body>
     @include('components.header')
     <style>
@@ -85,12 +95,12 @@
     <div class="logo">Boutique T-Shirt.com</div>
     <nav>
         <a href="#">Profil</a>
-        <a href="#">Panier</a>
+        <a href="/cart">Panier</a>
      
         
     </nav>
-       <a href="/product-list">Catalogue</a>
-       <a href=""></a>
+       <a href="/products">Catalogue</a>
+       <a href="/products"></a>
 </header>
 
 <div class="search-bar">

@@ -8,10 +8,10 @@
     <div class="row">
         <div class="col-md-4">
             <div class="card text-bg-light mb-3">
-                <div class="card-header">Produits</div>
+                <div class="card-header">Détail du Produit</div>
                 <div class="card-body">
-                    <p class="card-text">Gérer les produits du site</p>
-                    <a href="http://127.0.0.1:8001/products" class="btn btn-primary">Voir les produits</a>
+                    <p class="card-text">Gérer les détails du produit</p>
+                    <a href="http://127.0.0.1:8003/backoffice/products/1" class="btn btn-primary">Voir Détail du produit</a>
                 </div>
             </div>
         </div>
@@ -36,4 +36,21 @@
             </div>
         </div>
     </div>
+
+
+    <div class="col-md-4">
+            <div class="card text-bg-light mb-3">
+                <div class="card-header">liste des produits </div>
+                <div class="card-body">
+                    <p class="card-text">Gérer les liste des produits</p>
+                    <a href="http://127.0.0.1:8003/backoffice/products" class="btn btn-primary">Voir les liste des produits</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form method="POST" action="{{ route('logout') }}">
+    @csrf
+    <button type="submit">Déconnexion</button>
+</form>
 @endsection                                

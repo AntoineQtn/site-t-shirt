@@ -29,6 +29,7 @@
                 <a href="{{ route('show', $product->id) }}">Voir le détail</a>
                 <hr>
             </li>
+            
         @endforeach
     </ul>
 
