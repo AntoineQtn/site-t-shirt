@@ -1,4 +1,4 @@
-<?php
+<
 public function show($id)
 {
     // Exemple fictif

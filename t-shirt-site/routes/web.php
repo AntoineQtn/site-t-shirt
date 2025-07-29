@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\FormController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,5 +25,9 @@ Route::delete('/cart/{id}', [CartController::class, 'remove'])->name('cart.remov
 Route::get('/checkout', function () {
     return 'Page de paiement...';
 })->name('checkout');
+
+
+Route::get('/form', [FormController::class, 'showForm']);
+Route::post('/form', [FormController::class, 'handleForm'])->name('form.submit');
 
 
