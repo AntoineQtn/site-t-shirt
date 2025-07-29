@@ -8,7 +8,7 @@ class CartController extends Controller
     public function index()
     {
         $cart = collect(session()->get('cart', []));
-        return view('cart.index', compact('cart'));
+        return view('cart', compact('cart'));
     }
 
     public function update(Request $request, $id)

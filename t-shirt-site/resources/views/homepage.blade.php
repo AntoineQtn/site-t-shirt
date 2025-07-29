@@ -96,7 +96,7 @@
 </div>
 
 {{-- Condition de la bannière promo--}}
-@if($promoActive)
+@if($promoActive ?? false)
     <div class="promo-banner">
         Satisfait ou remboursé – 14 jours pour changer d'avis<br>
         <div class="highlight">Soldes d’été – 2ème démarque ! Jusqu’à <b>80%</b> sur les Nikes bleues</div>

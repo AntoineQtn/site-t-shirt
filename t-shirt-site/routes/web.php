@@ -16,9 +16,11 @@ Route::get('/products/{id}', [ProductController::class, 'show'])->name('products
 
 
 
-Route::get('/panier', [CartController::class, 'index'])->name('cart.index');
-Route::put('/panier/{id}', [CartController::class, 'update'])->name('cart.update');
-Route::delete('/panier/{id}', [CartController::class, 'remove'])->name('cart.remove');
+
+
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::put('/cart/{id}', [CartController::class, 'update'])->name('cart.update');
+Route::delete('/cart/{id}', [CartController::class, 'remove'])->name('cart.remove');
 Route::get('/checkout', function () {
     return 'Page de paiement...';
 })->name('checkout');

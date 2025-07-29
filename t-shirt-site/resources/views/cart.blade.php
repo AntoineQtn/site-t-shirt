@@ -3,6 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Mon Panier</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        form {
+            display: inline;
+        }
+    </style>
 </head>
 <body>
 
@@ -20,38 +38,47 @@
     </div>
 @endif
 
-<ul>
-    @forelse($cart as $item)
-    <li>
-        <strong>{{ $item->name }}</strong><br>
-        Prix unitaire : {{ $item->price }} €<br>
-        Quantité : {{ $item->quantity }}<br>
-        Total : {{ $item->price * $item->quantity }} €<br>
-
-        <!-- m-j-->
-        <form action="{{ route('cart.update', $item->id) }}" method="POST">
-            @csrf
-            @method('PUT')
-            <input type="number" name="quantity" value="{{ $item->quantity }}" min="1">
-            <button type="submit">Mettre à jour</button>
-        </form>
-
-        <!-- delate -->
-        <form action="{{ route('cart.remove', $item->id) }}" method="POST" style="margin-top: 5px;">
-            @csrf
-            @method('DELETE')
-            <button type="submit">Retirer</button>
-        </form>
-        <hr>
-    </li>
-    @empty
-        <p>Votre panier est vide.</p>
-    @endforelse
-</ul>
-
 @if($cart->isNotEmpty())
-    <p><strong>Total général :</strong> {{ $cart->sum(fn($item) => $item->price * $item->quantity) }} €</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Prix unitaire</th>
+                <th>Quantité</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach($cart as $item)
+            <tr>
+                <td><strong>{{ $item->name }}</strong></td>
+                <td>{{ number_format($item->price, 2) }} €</td>
+                <td>
+                    <form action="{{ route('cart.update', $item->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <input type="number" name="quantity" value="{{ $item->quantity }}" min="1" style="width: 60px;">
+                        <button type="submit">Mettre à jour</button>
+                    </form>
+                </td>
+                <td>{{ number_format($item->price * $item->quantity, 2) }} €</td>
+                <td>
+                    <form action="{{ route('cart.remove', $item->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Retirer</button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+
+    <p><strong>Total général :</strong> {{ number_format($cart->sum(fn($item) => $item->price * $item->quantity), 2) }} €</p>
     <a href="{{ route('checkout') }}">Passer à la caisse</a>
+@else
+    <p>Votre panier est vide.</p>
 @endif
 
 </body>
