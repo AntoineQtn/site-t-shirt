@@ -1,3 +1,10 @@
+<?php
+public function show($id)
+{
+    // Exemple fictif
+    $product = Product::find($id);
+    return view('products.show', compact('product'));
+}
 <!DOCTYPE html>
 <html>
 <head>
