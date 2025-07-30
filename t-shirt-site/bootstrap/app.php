@@ -10,8 +10,9 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
+    //enregistrement des middleware utilisé
     ->withMiddleware(function (Middleware $middleware): void {
-        // Enregistrer le middleware admin
+        // Enregistrement du middleware admin
         $middleware->alias([
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
         ]);

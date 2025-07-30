@@ -40,7 +40,7 @@
         @endforeach
     </div>
 </div>
-
+@include('components.footer')
 
 
 

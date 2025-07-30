@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BasketController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\homeController;
@@ -24,4 +27,21 @@ Route::prefix('backoffice')->group(function () {
     Route::get('/products/{id}/edit', [BackofficeController::class, 'editProduct'])->name('backoffice.products.edit');
     Route::put('/products/{id}', [BackofficeController::class, 'updateProduct'])->name('backoffice.products.update');
     Route::delete('/products/{id}', [BackofficeController::class, 'deleteProduct'])->name('backoffice.products.delete');
+});
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
+Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+
+//routes pour les utilisateurs
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
+//routes admin qui renvoient au backoffice
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 });

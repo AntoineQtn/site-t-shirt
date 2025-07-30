@@ -1,6 +1,9 @@
 @extends('layouts.frontoffice')
 
-@section('content')
+@include('components.header')
+
+
+
     <div class="container-fluid">
         <div class="row justify-content-center my-4">
             <div class="col-md-6">
@@ -119,4 +122,5 @@
             </div>
         </section>
     </div>
-@endsection
+
+@include('components.footer')
