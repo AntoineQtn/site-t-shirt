@@ -2,44 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProductsModel;
+use Illuminate\Http\Request;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
-
-    public function index()
+    // Affiche tous les produits triés par nom
+    public function listByName()
     {
-        $products = ProductsModel::all(); 
-        $title = "Liste des T-Shirts";
-        return view('products.index', compact('products', 'title'));
+        $products = Product::orderBy('name')->get();
+        return view('products.by_name', compact('products'));
     }
 
-  
-    public function show(int $id)
+    // Affiche tous les produits triés par prix croissant
+    public function listByPrice()
     {
-        $product = ProductsModel::findOrFail($id);
-        $title = "Détail du produit"; 
-        return view('products.show', compact('product', 'title'));
+        $products = Product::orderBy('price', 'asc')->get();
+        return view('products.by_price', compact('products'));
+    }
+
+    // Affiche le détail d’un produit spécifique
+    public function show($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('products.show', compact('product'));
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

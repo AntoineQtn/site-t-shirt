@@ -1,11 +1,8 @@
-<div>
-    <!-- We must ship. - Taylor Otwell -->
-</div>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8" />
-    <title>Données reçues</title>
+    <title>ici mes Données reçues</title>
 </head>
 <body>
     <h1>Données reçues</h1>
