@@ -6,9 +6,8 @@
     <title>@yield('title', 'Boutique T-shirts')</title>
 </head>
 <body>
-<a href="#">
-    Panier
-</a>
+    
+
 <main>
     @yield('content')
 </main>

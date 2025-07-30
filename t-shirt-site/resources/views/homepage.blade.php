@@ -13,7 +13,7 @@
     <nav>
         <a href="">Profil</a>
         <a href="/cart">Panier</a>
-        <a href="http://127.0.0.1:8004/products">Catalogue</a>
+        <a href="/products">Catalogue</a>
         <a href="{{ route('login.form') }}">Connexion Backoffice</a> <!-- lien vers login -->
     </nav>
 </header>

@@ -16,7 +16,8 @@
     </style>
 </head>
 <body>
-    <h1>Nos produits</h1>
+    <h1>Bienvenue {{ Auth::user()->name }} 👋</h1>
+    <p>Voici le contenu de notre catalogue !</p>
 
     <ul>
         @foreach($products as $product)
@@ -34,4 +35,8 @@
     </ul>
 
 </body>
+ <form method="POST" action="{{ route('logout') }}">
+    @csrf
+    <button type="submit">Déconnexion</button>
+  </form>
 </html>

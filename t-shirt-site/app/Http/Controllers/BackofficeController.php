@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-
 class BackofficeController extends Controller
 {
     public function index()
@@ -25,9 +24,14 @@ class BackofficeController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nom' => 'required|string|max:255',
-            'prix' => 'required|numeric|min:0',
+           $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'nullable|string',
+            'brand' => 'nullable|string|max:100',
+            'available' => 'boolean',
+            'quantity' => 'integer|min:0',
+            'price' => 'required|numeric|min:0',
         ]);
 
         Product::create($request->only(['nom', 'prix']));
@@ -49,11 +53,17 @@ class BackofficeController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nom' => 'required|string|max:255',
-            'prix' => 'required|numeric|min:0',
-        ]);
+          $product = Product::findOrFail($id);
 
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'nullable|string',
+            'brand' => 'nullable|string|max:100',
+            'available' => 'boolean',
+            'quantity' => 'integer|min:0',
+            'price' => 'required|numeric|min:0',
+        ]);
         $product = Product::findOrFail($id);
         $product->update($request->only(['nom', 'prix']));
 
