@@ -19,6 +19,10 @@ public function up()
         $table->decimal('price', 8, 2)->default(0.00);
         $table->timestamps();
     });
+
+    Schema::table('products', function (Blueprint $table) {
+        $table->string('image')->nullable();
+    });
 }
 
     public function down(): void

@@ -21,6 +21,12 @@
                         </div>
 
                         <div class="mb-3">
+                            <label for="image" class="form-label">Image du produit</label>
+                            <input type="file" name="image" class="form-control" @error('image') is-invalid @enderror>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+
+                        <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
                             <textarea class="form-control @error('description') is-invalid @enderror"
                                       id="description" name="description" rows="3" required>{{ old('description') }}</textarea>
