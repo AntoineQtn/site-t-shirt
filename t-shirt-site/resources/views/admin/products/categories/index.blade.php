@@ -11,7 +11,12 @@
             @forelse ($category->products as $product)
                 <li>{{ $product->name }} - {{ $product->price }} €</li>
             @empty
-                <li>Aucun produit</li>
+                <li>produit nike1 produit</li>
+                 <li>produit nike2 produit</li>
+                  <li>produit nike3 produit</li>
+                   <li>produit nike3 produit</li>
+                    <li>produit nike4 produit</li>
+                     <li>produit nike5 produit</li>
             @endforelse
         </ul>
     @endforeach
