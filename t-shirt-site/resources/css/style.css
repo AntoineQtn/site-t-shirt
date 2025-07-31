@@ -2,9 +2,12 @@ img {
     width: 10%;
     height:  auto;
 }
+<<<<<<< HEAD
 h1{
     color: green ;
 }
+=======
+>>>>>>> 4996b2c (Feat/header,footer,catalogue creation)
 button{
     background-color: red;
     color: white;

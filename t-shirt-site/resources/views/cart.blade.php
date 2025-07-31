@@ -5,22 +5,22 @@
     <meta charset="UTF-8" />
     <title>Votre Panier</title>
     <style>
-        table { width: 60%; margin: 20px auto; border-collapse: collapse; }
+        table { width: 70%; margin: 20px auto; border-collapse: collapse; }
         th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }
         th { background-color: #f5f5f5; }
-        .btn-retour { 
-            display: block; 
-            margin: 20px auto; 
-            background-color: #007BFF; 
-            color: white; 
-            padding: 10px 15px; 
-            text-align: center; 
-            border-radius: 5px; 
-            text-decoration: none; 
-            width: 200px;
+        .btn-retour {
+            display: block;
+            margin: 20px auto;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            width: 220px;
         }
         p.success-message {
-            text-align: center; 
+            text-align: center;
             color: green;
             font-weight: bold;
             margin-top: 20px;
@@ -30,6 +30,29 @@
             font-style: italic;
             margin-top: 40px;
             color: #555;
+        }
+        button {
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 5px 12px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        form.inline-form {
+            display: inline;
+        }
+        form.clear-cart {
+            text-align: center;
+            margin-top: 20px;
+        }
+        form.clear-cart button {
+            background-color: red;
+            width: 220px;
         }
     </style>
 </head>
@@ -41,7 +64,6 @@
     @endif
 
     @php
-        // Sécurisation : si $cart n'existe pas ou n'est pas un tableau, on crée un tableau vide
         $cart = isset($cart) && is_array($cart) ? $cart : [];
     @endphp
 
@@ -53,13 +75,13 @@
                     <th>Prix unitaire</th>
                     <th>Quantité</th>
                     <th>Total</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @php $totalGeneral = 0; @endphp
                 @foreach($cart as $id => $item)
                     @php
-                        // On force la conversion en float/int pour éviter les erreurs
                         $prix = floatval($item['prix']);
                         $quantite = intval($item['quantite']);
                         $totalLigne = $prix * $quantite;
@@ -70,21 +92,37 @@
                         <td>{{ number_format($prix, 2, ',', ' ') }} €</td>
                         <td>{{ $quantite }}</td>
                         <td>{{ number_format($totalLigne, 2, ',', ' ') }} €</td>
+                        <td>
+                            <form action="{{ route('cart.decrease', $id) }}" method="POST" class="inline-form">
+                                @csrf
+                                <button type="submit">−</button>
+                            </form>
+                            <form action="{{ route('cart.increase', $id) }}" method="POST" class="inline-form">
+                                @csrf
+                                <button type="submit">+</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
             <tfoot>
                 <tr>
                     <td colspan="3"><strong>Total général</strong></td>
-                    <td><strong>{{ number_format($totalGeneral, 2, ',', ' ') }} €</strong></td>
+                    <td colspan="2"><strong>{{ number_format($totalGeneral, 2, ',', ' ') }} €</strong></td>
                 </tr>
             </tfoot>
         </table>
+
+        <form action="{{ route('cart.clear') }}" method="POST" class="clear-cart">
+            @csrf
+            <button type="submit">Vider le panier</button>
+        </form>
+
     @else
         <p class="empty-cart">Votre panier est vide.</p>
     @endif
 
-    <a href="/products" class="btn-retour">← Continuer vos achats</a>
+    <a href="{{ url('/products') }}" class="btn-retour">← Continuer vos achats</a>
 </body>
 @include('components.footer')
 </html>

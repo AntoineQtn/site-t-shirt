@@ -1,6 +1,8 @@
+@include('components.header')
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
+    <meta charset="UTF-8" />
     <title>Liste des produits</title>
     <style>
         body {
@@ -13,10 +15,20 @@
         hr {
             border: 1px solid #ccc;
         }
+        .logout-button {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-    <h1>Bienvenue {{ Auth::user()->name }} 👋</h1>
+    <h1>
+        @auth
+            Bienvenue {{ Auth::user()->name }} 👋
+        @else
+            Bienvenue visiteur 👋
+        @endauth
+    </h1>
+
     <p>Voici le contenu de notre catalogue !</p>
 
     <ul>
@@ -24,19 +36,20 @@
             <li>
                 <strong>{{ $product->name }}</strong><br>
                 {{ $product->description }}<br>
-                Prix : {{ $product->price }} €<br>
+                Prix : {{ number_format($product->price, 2, ',', ' ') }} €<br>
                 Quantité : {{ $product->quantity }}<br>
 
                 <a href="{{ route('show', $product->id) }}">Voir le détail</a>
                 <hr>
             </li>
-            
         @endforeach
     </ul>
 
+    @auth
+        <form method="POST" action="{{ route('logout') }}" class="logout-button">
+            @csrf
+            <button type="submit">Déconnexion</button>
+        </form>
+    @endauth
 </body>
- <form method="POST" action="{{ route('logout') }}">
-    @csrf
-    <button type="submit">Déconnexion</button>
-  </form>
 </html>
