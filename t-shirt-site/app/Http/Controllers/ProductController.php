@@ -4,24 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
+
 
 class ProductController extends Controller
 {
-    // Affiche tous les produits triés par nom
     public function listByName()
     {
         $products = Product::orderBy('name')->get();
         return view('products.by_name', compact('products'));
     }
-
-    // Affiche tous les produits triés par prix croissant
     public function listByPrice()
     {
         $products = Product::orderBy('price', 'asc')->get();
         return view('products.by_price', compact('products'));
     }
-
-    // Affiche le détail d’un produit spécifique
     public function show($id)
     {
         $product = Product::findOrFail($id);
@@ -78,6 +75,13 @@ public function adminIndex()
 {
     $products = \App\Models\Product::orderBy('created_at', 'desc')->get();
     return view('admin.products.index', compact('products'));
+}
+
+
+public function index()
+{
+    $produits = DB::select('SELECT * FROM produits WHERE stock > ?', [0]);
+    return view('produits.index', ['produits' => $produits]);
 }
 
 
