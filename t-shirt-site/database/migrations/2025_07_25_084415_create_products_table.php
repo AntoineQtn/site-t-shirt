@@ -20,9 +20,7 @@ public function up()
         $table->timestamps();
     });
 
-    Schema::table('products', function (Blueprint $table) {
-        $table->string('image')->nullable();
-    });
+
 }
 
     public function down(): void

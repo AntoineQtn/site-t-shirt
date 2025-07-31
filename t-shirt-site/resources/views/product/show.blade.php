@@ -5,7 +5,7 @@
 
     <div class="container mt-5">
 
-        <h1 class="mb-4 text-center">Produit : T-Shirt blanc</h1>
+        <h1 class="mb-4 text-center">{{ $product->name }}</h1>
 
         <div class="row">
 
@@ -26,7 +26,7 @@
                         <h5 class="card-title">Teddy Yacht Club</h5>
                         <p class="card-text">Tee Shirt Oversize Large Atelier Paris Blanc Noir</p>
                         <p>
-                            <span class="text-danger fw-bold fs-4">19,99 €</span>
+                            <span class="text-danger fw-bold fs-4">{{$product->price}}</span>
                             <span class="text-muted text-decoration-line-through ms-2">24,99 €</span>
                         </p>
                         <div class="alert alert-success w-50 text-center" role="alert">
