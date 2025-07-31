@@ -14,9 +14,10 @@
                         <a href="{{ url('/') }}" class="btn btn-outline-primary">
                             <i class="fas fa-home"></i> Accueil
                         </a>
-                        <a href="{{ route('basket.cart') }}" class="btn btn-outline-success">
-                            <i class="fas fa-shopping-cart"></i> Panier
+                        <a href="{{ url('/cart') }}" class="btn btn-outline-primary">
+                            <i class="fas fa-shopping-cart me-1"></i> Panier
                         </a>
+
                         @guest
                             <a href="{{ route('register') }}" class="btn btn-outline-info">
                                 <i class="fas fa-user-plus"></i> S'inscrire

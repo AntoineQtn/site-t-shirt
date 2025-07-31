@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BasketController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\ProductController;
@@ -12,7 +13,7 @@ use App\Http\Controllers\BackofficeController;
 Route::get('/', [homeController::class, 'show'])->name('home');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
-Route::get('/basket', [BasketController::class, 'index'])->name('basket.cart');
+Route::get('/cart', [BasketController::class, 'index'])->name('cart.cart');
 
 
 //préfixation en "backoffice" de toutes les routes qui suivront
@@ -44,4 +45,13 @@ Route::middleware(['auth'])->group(function () {
 //routes admin qui renvoient au backoffice
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
+    Route::patch('/cart/update/{cartItem}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/cart/remove/{cartItem}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::delete('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
+    Route::get('/cart/count', [CartController::class, 'count'])->name('cart.count');
 });

@@ -9,7 +9,7 @@ class ProductsTableSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('products')->insert([
+        /*DB::table('products')->insert([
             [
                 'name' => 't-shirt 1',
                 'description' => 'Description du produit 1',
@@ -32,7 +32,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-        ]);
+        ]);*/
     }
 
 }

@@ -51,7 +51,7 @@
                             </tbody>
                         </table>
                         <a href="#" class="btn btn-success mt-3">
-                            <i class="fas fa-shopping-cart me-1"></i> Ajouter au panier
+                            <i class="fas fa-shopping-cart me-1"><x-add-to-cart :product="$product" /></i> Ajouter au panier
                         </a>
                     </div>
                 </div>

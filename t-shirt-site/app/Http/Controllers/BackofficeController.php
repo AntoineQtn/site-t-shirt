@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProductsModel;
+use App\Models\Product;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -18,8 +18,8 @@ class BackofficeController extends Controller
     {
         //Utilisation des méthodes Model "count" pour l'affichage de tous les produits puis de "where" et "count"
         //pour afficher seulement les produits disponibles
-        $totalProducts = ProductsModel::count();
-        $availableProducts = ProductsModel::where('available', true)->count();
+        $totalProducts = Product::count();
+        $availableProducts = Product::where('available', true)->count();
 
         return view('backoffice.dashboard', compact('totalProducts', 'availableProducts'));
     }
@@ -27,7 +27,7 @@ class BackofficeController extends Controller
     //Récupération de touts les produits depuis la base
     public function products(): View
     {
-        $products = ProductsModel::all();
+        $products = Product::all();
         return view('backoffice.products.index', compact('products'));
     }
 
@@ -57,7 +57,7 @@ class BackofficeController extends Controller
             $data['image'] = $request->file('image')->store('products', 'public');
         }
 
-        ProductsModel::create($data);
+        Product::create($data);
 
         return redirect()->route('backoffice.products')->with('success', 'Produit créé avec succès !');
     }
@@ -66,7 +66,7 @@ class BackofficeController extends Controller
     //méthode pour l'affichage de la View edit utilisant la fonction "findorfail" de notre ProductModel
     public function editProduct($id): View|Application
     {
-        $product = ProductsModel::findOrFail($id);
+        $product = Product::findOrFail($id);
         return view('backoffice.products.edit', compact('product'));
     }
 
@@ -74,7 +74,7 @@ class BackofficeController extends Controller
     public function updateProduct(Request $request, $id): RedirectResponse
     {
 
-        $product = ProductsModel::findOrFail($id);
+        $product = Product::findOrFail($id);
 
 
         $request->validate([
@@ -105,7 +105,7 @@ class BackofficeController extends Controller
 
     public function deleteProduct($id): RedirectResponse
     {
-        $product = ProductsModel::findOrFail($id);
+        $product = Product::findOrFail($id);
         if ($product->image && file_exists(storage_path('app/public/' . $product->image))) {
             unlink(storage_path('app/public/' . $product->image));
         }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProductsModel;
+use App\Models\Product;
 use Illuminate\Contracts\View\View;
 
 class ProductController extends Controller
@@ -10,13 +10,13 @@ class ProductController extends Controller
 
   public function index(): View
   {
-      $products = ProductsModel::all();
+      $products = Product::all();
       return view('product.index', compact('products'));
 
 }
 public function show(int $id): View
 {
-        $product = ProductsModel::findOrFail($id);
+        $product = Product::findOrFail($id);
         return view('product.show', compact('product'));
     }
 }

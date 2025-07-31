@@ -49,4 +49,22 @@ class User extends Authenticatable
     {
         return $this->role === 'user';
     }
+
+    //Méthode définissant une relation one-to-many entre l'user (one) et les CartItems (many)
+    //Pour l'user il peut avoir plusieurs produits dans son panier, pour les produits du panier ils n'ont qu'un user
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
+
+    public function getCartTotalAttribute()
+    {
+        return $this->cartItems->sum('total');
+    }
+
+    public function getCartCountAttribute()
+    {
+        return $this->cartItems->sum('quantity');
+    }
+
 }
