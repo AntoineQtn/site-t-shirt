@@ -3,6 +3,19 @@
 @section('title', 'Ajouter un produit')
 
 @section('content')
+
+    {{-- Bloc d'affichage des erreurs de validation --}}
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <strong>Erreurs lors de la soumission :</strong>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li> {{-- Affiche les erreurs PHP (validation Laravel) --}}
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form method="POST" action="{{ route('admin.products.store') }}">
         @csrf
 
@@ -60,7 +73,7 @@
             </select>
         </div>
 
-        <button type="submit" class="btn btn-success">💾 Enregistrer</button>
+        <button type="submit" class="btn btn-success">Enregistrer</button>
         <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">Retour</a>
     </form>
 @endsection
