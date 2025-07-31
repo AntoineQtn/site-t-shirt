@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\Category; 
+use App\Models\Category;
+use Illuminate\Support\Facades\DB;  // <== Bien placé ici, au début
 
 class ProductController extends Controller
 {
@@ -80,5 +81,11 @@ class ProductController extends Controller
     {
         $products = Product::orderBy('created_at', 'desc')->get();
         return view('admin.products.index', compact('products'));
+    }
+
+    public function listProductsRaw()
+    {
+        $products = DB::select('SELECT * FROM products');
+        return view('products.list', ['products' => $products]);
     }
 }
