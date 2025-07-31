@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use Illuminate\Support\Facades\DB;
-
+use App\Models\Category; 
 
 class ProductController extends Controller
 {
@@ -14,75 +13,72 @@ class ProductController extends Controller
         $products = Product::orderBy('name')->get();
         return view('products.by_name', compact('products'));
     }
+
     public function listByPrice()
     {
         $products = Product::orderBy('price', 'asc')->get();
         return view('products.by_price', compact('products'));
     }
+
     public function show($id)
     {
         $product = Product::findOrFail($id);
         return view('products.show', compact('product'));
     }
-  
-public function create()
-{
-    return view('admin.products.create');
-}
 
-public function store(Request $request)
-{
-    $validated = $request->validate([
-        'name' => 'required|string|max:255',
-        'description' => 'nullable|string',
-        'image' => 'nullable|string',
-        'marque' => 'nullable|string',
-        'disponibilite' => 'boolean',
-        'quantite' => 'required|integer|min:0',
-        'price' => 'required|numeric|min:0',
-    ]);
+    public function create()
+    {
+        $categories = Category::all();
+        return view('admin.products.create', compact('categories'));
+    }
 
-    Product::create($validated);
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'nullable|string',
+            'marque' => 'nullable|string',
+            'disponibilite' => 'boolean',
+            'quantite' => 'required|integer|min:0',
+            'price' => 'required|numeric|min:0',
+            'category_id' => 'nullable|exists:categories,id', 
+        ]);
 
-    return redirect()->route('admin.products.index')->with('success', 'Produit ajouté avec succès.');
+        Product::create($validated);
 
-}
+        return redirect()->route('admin.products.index')->with('success', 'Produit ajouté avec succès.');
+    }
 
-public function edit($id)
-{
-    $product = Product::findOrFail($id);
-    return view('admin.products.edit', compact('product'));
-}
+    public function edit($id)
+    {
+        $product = Product::findOrFail($id);
+        $categories = Category::all();
+        return view('admin.products.edit', compact('product', 'categories'));
+    }
 
-public function update(Request $request, $id)
-{
-    $validated = $request->validate([
-        'name' => 'required|string|max:255',
-        'description' => 'nullable|string',
-        'image' => 'nullable|string',
-        'marque' => 'nullable|string',
-        'disponibilite' => 'boolean',
-        'quantite' => 'required|integer|min:0',
-        'price' => 'required|numeric|min:0',
-    ]);
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'nullable|string',
+            'marque' => 'nullable|string',
+            'disponibilite' => 'boolean',
+            'quantite' => 'required|integer|min:0',
+            'price' => 'required|numeric|min:0',
+            'category_id' => 'nullable|exists:categories,id',
+        ]);
 
-    $product = Product::findOrFail($id);
-    $product->update($validated);
+        $product = Product::findOrFail($id);
+        $product->update($validated);
 
-    return redirect('/products/name')->with('success', 'Produit modifié avec succès.');
-}
-public function adminIndex()
-{
-    $products = \App\Models\Product::orderBy('created_at', 'desc')->get();
-    return view('admin.products.index', compact('products'));
-}
+        return redirect('/products/name')->with('success', 'Produit modifié avec succès.');
+    }
 
-
-public function index()
-{
-    $produits = DB::select('SELECT * FROM produits WHERE stock > ?', [0]);
-    return view('produits.index', ['produits' => $produits]);
-}
-
-
+    public function adminIndex()
+    {
+        $products = Product::orderBy('created_at', 'desc')->get();
+        return view('admin.products.index', compact('products'));
+    }
 }
