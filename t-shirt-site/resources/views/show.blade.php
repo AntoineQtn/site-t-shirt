@@ -1,104 +1,154 @@
 
-
-
-@include('components.header')
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-    <meta charset="UTF-8" />
     <title>{{ $product->name }}</title>
     <style>
         img {
-            width: 100%;
-            max-width: 300px;
+            width: 10%;
             height: auto;
         }
         h1 {
             color: green;
         }
         button {
-            background-color: #007BFF;
+            background-color: red;
             color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
         }
         body {
             font-family: Arial, sans-serif;
-            padding: 20px;
-            max-width: 800px;
-            margin: auto;
+            justify-content: center;
+            padding: 1px;
+            margin-left: 500px;
         }
-        nav a {
-            margin-right: 10px;
-            text-decoration: none;
-            color: #007BFF;
-            font-weight: bold;
+        .top-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 50px;
         }
-        nav a:hover {
-            text-decoration: underline;
+        table {
+            margin: 40px auto 0 auto;
+            border-collapse: collapse;
+            width: 150px;
+            text-align: center;
+            font-size: 1em;
         }
         .gallery {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 300px);
+            grid-auto-rows: auto;
+            gap: 20px;
         }
         .gallery img {
+            width: 300px;
+            height: auto;
             border-radius: 8px;
-            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .old-price {
+            text-decoration: line-through;
+            color: gray;
+            margin-right: 10px;
+        }
+        .promo-price {
+            color: red;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .promo {
+            background-color: #ffe0e0;
+            padding: 5px 10px;
+            display: inline-block;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: #c40000;
         }
         .btn-panier {
-            display: inline-block;
-            margin-top: 15px;
             background-color: #007BFF;
             color: white;
-            padding: 10px 25px;
-            border-radius: 5px;
+            padding: 10px 20px;
             text-decoration: none;
-        }
-        .btn-panier:hover {
-            background-color: #0056b3;
+            border-radius: 5px;
+            display: inline-block;
         }
     </style>
 </head>
-<body>
-
 <nav>
-    <a href="{{ url('/homepage') }}">Homepage</a>
-    <a href="{{ url('/profile') }}">Profil</a>
-    <a href="{{ route('cart') }}">Panier</a>
-    <a href="{{ url('/products') }}">Catalogue</a>
+    <a href="/homepage">Homepage</a>
+    <a href="#">Profil</a>
+    <a href="/cart">Panier</a>
+    <a href="/products">Catalogue</a>
     <a href="{{ route('login.form') }}">Connexion Backoffice</a>
 </nav>
+<body>
+
+@include('components.header')
 
 <h1>Produit : {{ $product->name }}</h1>
 
-<div class="gallery">
-    <img src="https://assets.laboutiqueofficielle.com/w_1100,q_auto,f_auto/media/products/2023/11/03/teddy-yacht-club_395936_TYC_TSO_ATELIERPARIS_BLCNOI_20231110T100438_01.jpg" alt="Image 1">
-    <img src="https://assets.laboutiqueofficielle.com/w_1100,q_auto,f_auto/media/products/2023/11/03/teddy-yacht-club_395936_TYC_TSO_ATELIERPARIS_BLCNOI_20231110T100439_02.jpg" alt="Image 2">
-    <img src="https://assets.laboutiqueofficielle.com/w_1100,q_auto,f_auto/media/products/2023/11/03/teddy-yacht-club_395936_TYC_TSO_ATELIERPARIS_BLCNOI_20231110T100440_03.jpg" alt="Image 3">
+<div class="top-container">
+    <div class="gallery">
+        <img src="https://assets.laboutiqueofficielle.com/w_1100,q_auto,f_auto/media/products/2023/11/03/teddy-yacht-club_395936_TYC_TSO_ATELIERPARIS_BLCNOI_20231110T100438_01.jpg" alt="T-Shirt 1">
+        <img src="https://assets.laboutiqueofficielle.com/w_1100,q_auto,f_auto/media/products/2023/11/03/teddy-yacht-club_395936_TYC_TSO_ATELIERPARIS_BLCNOI_20231110T100439_02.jpg" alt="T-Shirt 2">
+        <img src="https://assets.laboutiqueofficielle.com/w_1100,q_auto,f_auto/media/products/2023/11/03/teddy-yacht-club_395936_TYC_TSO_ATELIERPARIS_BLCNOI_20231110T100440_03.jpg" alt="T-Shirt 3">
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Taille</th>
+            <th>Dispo</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr><td>XS</td><td>✔️</td></tr>
+        <tr><td>S</td><td>✔️</td></tr>
+        <tr><td>M</td><td>✔️</td></tr>
+        <tr><td>L</td><td>✔️</td></tr>
+        <tr><td>XL</td><td>✔️</td></tr>
+        <tr><td>2XL</td><td>✔️</td></tr>
+        <tr><td>3XL</td><td>❌</td></tr>
+        </tbody>
+    </table>
 </div>
 
-<p><strong>Description :</strong></p>
+<p><strong>{{ $product->name }}</strong></p>
 <p>{{ $product->description }}</p>
 
-<p><strong>Prix :</strong> {{ number_format($product->price, 2, ',', ' ') }} €</p>
+<p>
+    <span class="promo-price">{{ number_format($product->price, 2, ',', ' ') }} €</span>
+    <span class="old-price">24,99 €</span>
+</p>
+<div class="promo">-20% de réduction</div>
 
-<!-- Formulaire d'ajout au panier -->
+<br><br>
+
+<!-- ✅ FORMULAIRE corrigé pour ajout panier -->
 <form method="POST" action="{{ route('cart.add') }}">
     @csrf
     <input type="hidden" name="id" value="{{ $product->id }}">
     <input type="hidden" name="nom" value="{{ $product->name }}">
     <input type="hidden" name="prix" value="{{ $product->price }}">
-    <button type="submit">Ajouter au panier</button>
+
+    <button type="submit" style="background-color: red; color: white; border: none; padding: 10px 20px; border-radius: 5px;">
+        Ajouter au panier
+    </button>
 </form>
 
+<br>
+
+<!-- Lien vers panier -->
 <a href="{{ route('cart') }}" class="btn-panier">🛒 Voir le panier</a>
 
-@include('components.footer')
 </body>
+
+@include('components.footer')
 </html>

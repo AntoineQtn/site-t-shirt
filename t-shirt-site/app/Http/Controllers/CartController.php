@@ -17,6 +17,8 @@ class CartController extends Controller
     // Ajouter un produit au panier
     public function add(Request $request)
     {
+
+        dd($request->all());
         // Validation simplifiée des champs reçus
         $request->validate([
             'id' => 'required',
@@ -125,4 +127,5 @@ class CartController extends Controller
         session()->forget('cart');
         return redirect()->route('cart')->with('success', 'Panier vidé avec succès !');
     }
+    
 }

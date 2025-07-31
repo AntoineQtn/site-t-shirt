@@ -17,10 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::get('/homepage', [HomeController::class, 'index'])->name('homepage');
-
 // Page d'accueil personnalisée
+Route::get('/homepage', [homeController::class, 'index'])->name('homepage');
 Route::get('/homepage', [homeController::class, 'show']);
 
 // Produits (côté client)
@@ -36,11 +34,20 @@ Route::post('/cart/decrease/{id}', [CartController::class, 'decrease'])->name('c
 Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 
+// Authentification
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/login-custom', [LoginController::class, 'login'])->name('login.custom');
+
+// Compte utilisateur
+Route::get('/account', [AccountController::class, 'showForm'])->name('account');
+Route::post('/account', [AccountController::class, 'register'])->name('account.submit');
 
 // Backoffice - tableau de bord
 Route::get('/backoffice', [BackofficeController::class, 'index'])->name('backoffice');
 
-// Backoffice - produits (groupe avec préfixe + nom)
+// Backoffice - produits
 Route::prefix('backoffice/products')->name('backoffice.products.')->group(function () {
     Route::get('/', [BackofficeController::class, 'products'])->name('index');
     Route::get('/create', [BackofficeController::class, 'create'])->name('create');
@@ -51,22 +58,7 @@ Route::prefix('backoffice/products')->name('backoffice.products.')->group(functi
     Route::delete('/{id}', [BackofficeController::class, 'destroy'])->name('destroy');
 });
 
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
-Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-// Protéger les routes backoffice
-Route::get('/backoffice', [BackofficeController::class, 'index'])->name('backoffice');
-
-
-
-Route::get('/account', [AccountController::class, 'showForm'])->name('account');
-Route::post('/account', [AccountController::class, 'register'])->name('account.submit');
-
-
-
-Route::post('/login-custom', [LoginController::class, 'login'])->name('login.custom');
-
+// Backoffice - utilisateurs
 Route::prefix('backoffice/users')->name('backoffice.users.')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('index');
     Route::get('/create', [UserController::class, 'create'])->name('create');
@@ -77,10 +69,12 @@ Route::prefix('backoffice/users')->name('backoffice.users.')->group(function () 
     Route::delete('/{id}', [UserController::class, 'destroy'])->name('destroy');
 });
 
+// Backoffice - commandes
 Route::prefix('backoffice')->name('backoffice.')->group(function () {
     Route::resource('orders', OrderController::class);
 });
 
+// Backoffice - catégories
 Route::prefix('backoffice')->name('backoffice.')->group(function () {
     Route::resource('categories', CategoryController::class);
 });
