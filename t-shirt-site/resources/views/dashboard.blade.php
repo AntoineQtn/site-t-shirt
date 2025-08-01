@@ -77,6 +77,10 @@
             <button type="submit">Déconnexion</button>
         </form>
     </div>
+    <a class="nav-link" href="/">
+        <i class="fas fa-external-link-alt me-2"></i>
+        Voir le site
+    </a>
 </div>
 </body>
 </html>

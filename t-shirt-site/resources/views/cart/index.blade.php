@@ -41,7 +41,6 @@
             </div>
         @else
             <div class="row">
-                <!-- Articles du panier -->
                 <div class="col-lg-8 mb-4">
                     <div class="card shadow-sm">
                         <div class="card-header bg-light">
@@ -67,13 +66,13 @@
                                             </div>
                                         </div>
 
-                                        <!-- Informations produit -->
+
                                         <div class="col-md-4 col-9 mb-3 mb-md-0">
                                             <h6 class="fw-bold mb-1">{{ $item->product->name }}</h6>
                                             <p class="text-muted mb-0 small">{{ number_format($item->price, 2) }} € l'unité</p>
                                         </div>
 
-                                        <!-- Contrôles quantité -->
+
                                         <div class="col-md-3 col-6 mb-3 mb-md-0">
                                             <label class="form-label small text-muted">Quantité</label>
                                             <div class="input-group input-group-sm">
@@ -91,7 +90,7 @@
                                             </div>
                                         </div>
 
-                                        <!-- Total ligne et actions -->
+
                                         <div class="col-md-2 col-4 text-end">
                                             <div class="fw-bold text-success item-total mb-2">
                                                 {{ number_format($item->total, 2) }} €
@@ -102,7 +101,6 @@
                                             </button>
                                         </div>
 
-                                        <!-- Bouton supprimer mobile -->
                                         <div class="col-2 d-md-none text-end">
                                             <button onclick="removeItem({{ $item->id }})"
                                                     class="btn btn-sm btn-outline-danger">
@@ -116,7 +114,6 @@
                     </div>
                 </div>
 
-                <!-- Résumé de commande -->
                 <div class="col-lg-4">
                     <div class="card shadow-sm sticky-top" style="top: 20px;">
                         <div class="card-header bg-primary text-white">
@@ -151,7 +148,7 @@
                             </a>
                         </div>
 
-                        <!-- Informations complémentaires -->
+
                         <div class="card-footer bg-light">
                             <small class="text-muted">
                                 <div class="d-flex align-items-center mb-1">
@@ -186,16 +183,16 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        // Mettre à jour l'affichage
+                        // Mis à jour l'affichage
                         const item = document.querySelector(`[data-item-id="${itemId}"]`);
                         item.querySelector('.quantity-display').value = newQuantity;
                         item.querySelector('.item-total').textContent = data.total.toFixed(2) + ' €';
 
-                        // Mettre à jour les totaux
+                        // des totaux
                         document.querySelector('.cart-subtotal').textContent = data.cartTotal.toFixed(2) + ' €';
                         document.querySelector('.cart-total').textContent = data.cartTotal.toFixed(2) + ' €';
 
-                        // Animation de succès
+                        // Animation succès
                         item.classList.add('bg-light');
                         setTimeout(() => item.classList.remove('bg-light'), 1000);
                     }

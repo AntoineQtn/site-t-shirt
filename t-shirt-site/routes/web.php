@@ -13,7 +13,7 @@ use App\Http\Controllers\BackofficeController;
 Route::get('/', [homeController::class, 'show'])->name('home');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
-Route::get('/cart', [BasketController::class, 'index'])->name('cart.cart');
+
 
 
 //préfixation en "backoffice" de toutes les routes qui suivront
@@ -46,7 +46,7 @@ Route::middleware(['auth'])->group(function () {
 });
 //routes admin qui renvoient au backoffice
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+
 });
 
 Route::middleware('auth')->group(function () {

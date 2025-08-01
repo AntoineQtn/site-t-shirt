@@ -28,4 +28,14 @@ class Product extends Model
         $cartItem = $this->cartItems()->where('user_id', $userId)->first();
         return $cartItem ? $cartItem->quantity : 0;
     }
+    protected $casts = [
+        'price' => 'decimal:2',
+        'image' => 'array',
+        'is_active' => 'boolean'
+    ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

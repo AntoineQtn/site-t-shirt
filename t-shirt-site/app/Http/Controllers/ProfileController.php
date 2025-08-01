@@ -16,14 +16,13 @@ class ProfileController extends Controller
     {
         // L'utilisateur authentifié est automatiquement disponible via Auth::user()
         // et sera passé à la vue implicitement dans ce cas.
-        // Ou vous pouvez le passer explicitement :
         $user = Auth::user();
         return view('auth.edit', compact('user'));
     }
 
-    /**
-     * Met à jour les informations du profil.
-     */
+
+    //Met à jour les informations du profil.
+
     public function update(Request $request)
     {
         $user = Auth::user();
@@ -38,15 +37,11 @@ class ProfileController extends Controller
                 'max:255',
                 Rule::unique('users')->ignore($user->id), // L'email doit être unique, sauf pour l'utilisateur actuel
             ],
-            // Ajoutez d'autres champs si nécessaire (ex: 'role' si modifiable par l'utilisateur)
         ]);
 
         // Mise à jour des informations
         $user->name = $request->name;
         $user->email = $request->email;
-        // Si vous avez d'autres champs comme 'role', ne les mettez à jour que s'ils
-        // sont destinés à être modifiés par l'utilisateur via ce formulaire.
-        // N'oubliez pas le mass assignment ($fillable) dans le modèle User si vous utilisez ->update()
 
         $user->save();
 
@@ -54,10 +49,7 @@ class ProfileController extends Controller
         return redirect()->route('profile.edit')->with('status', 'Profil mis à jour avec succès !');
     }
 
-    /**
-     * Met à jour le mot de passe de l'utilisateur.
-     * C'est souvent une méthode séparée pour des raisons de sécurité.
-     */
+    //mise à jour du mot de passe
     public function updatePassword(Request $request)
     {
         $request->validate([

@@ -17,10 +17,12 @@ public function up()
         $table->boolean('available')->default(true);
         $table->integer('quantity')->default(0);
         $table->decimal('price', 8, 2)->default(0.00);
+        $table->string('slug')->unique();
+        $table->string('sku')->unique();
+        $table->boolean('is_active')->default(true);
+        $table->foreignId('category_id')->constrained()->onDelete('cascade');
         $table->timestamps();
     });
-
-
 }
 
     public function down(): void
