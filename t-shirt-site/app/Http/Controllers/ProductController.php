@@ -10,7 +10,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = ProductsModel::all();
-        return view('products', compact('products'));
+        return view('product.products', compact('products'));
     }
 
     public function show(int $id)

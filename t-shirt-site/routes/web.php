@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\homeController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\BackofficeController;
 use App\Http\Controllers\AuthController;
@@ -11,7 +10,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Backoffice\OrderController;
 use App\Http\Controllers\Backoffice\CategoryController;
-
+use App\Http\Controllers\ProductController;
 // Page d'accueil
 Route::get('/', function () {
     return view('welcome');
@@ -78,5 +77,4 @@ Route::prefix('backoffice')->name('backoffice.')->group(function () {
 Route::prefix('backoffice')->name('backoffice.')->group(function () {
     Route::resource('categories', CategoryController::class);
 });
-
 
