@@ -6,6 +6,17 @@
 <body>
     <h1>Créer un compte utilisateur</h1>
 
+
+@if ($errors->any())
+    <div>
+        <ul style="color:red;">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
     <form action="{{ route('account.submit') }}" method="POST">
         @csrf
 

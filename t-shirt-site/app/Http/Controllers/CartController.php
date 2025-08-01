@@ -11,14 +11,12 @@ class CartController extends Controller
     {
         // Récupérer le panier depuis la session, ou tableau vide par défaut
         $cart = session()->get('cart', []);
-        return view('cart', compact('cart'));
+        return view('cart.cart', compact('cart'));
     }
 
     // Ajouter un produit au panier
     public function add(Request $request)
     {
-
-        dd($request->all());
         // Validation simplifiée des champs reçus
         $request->validate([
             'id' => 'required',

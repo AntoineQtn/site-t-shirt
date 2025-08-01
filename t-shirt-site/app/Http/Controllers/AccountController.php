@@ -22,7 +22,8 @@ class AccountController extends Controller
      * Enregistre un nouvel utilisateur dans la base de données.
      */
     public function register(Request $request)
-    {
+    {            
+        dd($request->all()); 
         // Validation des données du formulaire
         $request->validate([
             'name' => 'required|string|max:255',

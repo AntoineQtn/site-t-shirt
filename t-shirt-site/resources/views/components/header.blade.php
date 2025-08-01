@@ -3,18 +3,10 @@
 @section('content')
     <h1>Header</h1>
 
-<form action="{{ route('account.submit') }}" method="POST">
-    @csrf
-    <!-- Champs nom, email, mot de passe, etc. -->
+ <button type="submit">Créer mon compte</button>
 
-   <a href="{{ route('account.submit') }}" style="display:inline-block; padding:10px 20px; background:#3490dc; color:white; text-decoration:none; border-radius:5px;">
-    Créer mon compte
-</a>
+<br><br>
 
-<br>
-
-<a href="{{ route('account.submit') }}">Déjà inscrit ? Se connecter ici</a>
-
-
-
+<a href="{{ route('login.submit') }}">J'ai déjà un compte, me connecter</a>
+        <a href="/cart">Panier</a>
 @endsection

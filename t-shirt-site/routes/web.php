@@ -78,3 +78,5 @@ Route::prefix('backoffice')->name('backoffice.')->group(function () {
 Route::prefix('backoffice')->name('backoffice.')->group(function () {
     Route::resource('categories', CategoryController::class);
 });
+
+
